@@ -6,5 +6,6 @@
   "session": {
     "secret": "insecuresecret"
   },
-  "resourceServer": "http://localhost:8081"
+  "resourceServer": "http://localhost:8081",
+  "serverRoot": "http://localhost:8080"
 }

@@ -14,6 +14,7 @@ app.use(require("express-session")({
 const querystring = require("querystring")
 const axios = require("axios").default
 const resourceServer = config.get("resourceServer")
+const serverRoot = config.get("serverRoot")
 app.set("view engine", "pug");
 
 const port = config.get("port")
@@ -29,8 +30,8 @@ app.get("/login", (req, res) => {
     client_id: oauthClient.id,
     response_type: "code",
     scope: "openid profile read_skills write_skills",
-    redirect_uri: "http://localhost:8080/authorization-code/callback",
-    state: "foo"
+    redirect_uri: `${serverRoot}/authorization-code/callback`,
+    state: Math.random().toString(36).substring(7)
   })
   res.redirect(`${oauthClient.issuerUrl}/v1/authorize?${qs}`)
 })
@@ -40,7 +41,7 @@ app.get("/authorization-code/callback", async (req, res) => {
   try {
     const response = await axios.post(`${oauthClient.issuerUrl}/v1/token`, querystring.stringify({
       grant_type: "authorization_code",
-      redirect_uri: "http://localhost:8080/authorization-code/callback",
+      redirect_uri: `${serverRoot}/authorization-code/callback`,
       code
     }), {
       auth: {

@@ -7,5 +7,6 @@
   "session": {
     "secret": "SESSION_SECRET"
   },
-  "resourceServer": "RESOURCE_SERVER"
+  "resourceServer": "RESOURCE_SERVER",
+  "serverRoot": "SERVER_ROOT"
 }
