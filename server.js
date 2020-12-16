@@ -59,11 +59,7 @@ app.get("/authorization-code/callback", async (req, res) => {
     req.session.cookie.maxAge = hour
     res.redirect("/skills")
   } catch (e) {
-    res.status(e.response.status).json({
-      status: e.response.status,
-      message: e.message,
-      data: e.response.data
-    })
+    res.render("error")
   }  
 })
 
