@@ -1,0 +1,11 @@
+extends ./layout.pug
+
+block content
+  form(method="post" action="/add-skills")
+    .form-group
+    label(for="skills-input") Skills
+    input.form-control#skills-input(aria-describedby="skillsHelp" name="skills")
+    small#skillsHelp.form-text.text-muted Provider us a comma separated listed of skills to add
+    button.btn.btn-primary(type="submit") Submit
+  if success
+    .alert.alert-success Skills were added successfully

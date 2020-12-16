@@ -1,0 +1,8 @@
+extends ./layout.pug
+
+block content
+  h1 My skills
+  if skills
+    ul.list-group
+      each skill in skills
+        li.list-group-item.list-group-item-action= skill
